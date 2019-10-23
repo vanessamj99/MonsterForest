@@ -53,6 +53,7 @@ function draw() {
   theMonster.display()
   theMonster.movement()
 
+  //test comment
   // thePlayer.move();
   // thePlayer.display();
 }
