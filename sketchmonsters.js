@@ -123,8 +123,8 @@ class Monsters{
       if(this.x < 60){
         this.x = 60
       }
-      if(this.y > height - 60){
-        this.y = height - 60
+      if(this.y > height - 80){
+        this.y = height - 80
       }
       if(this.y < 60){
         this.y = 60
