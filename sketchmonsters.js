@@ -117,17 +117,17 @@ class Monsters{
     movement(){
       this.x += this.dx
       this.y += this.dy
-      if(this.x > width){
-        this.x = 10
+      if(this.x > width - 60){
+        this.x = width - 60
       }
-      if(this.x < 0){
-        this.x = width
+      if(this.x < 60){
+        this.x = 60
       }
-      if(this.y > height){
-        this.y = 10
+      if(this.y > height - 60){
+        this.y = height - 60
       }
-      if(this.y < 0){
-        this.y = height
+      if(this.y < 60){
+        this.y = 60
       }
       //speed
       this.dx = 5 * (noise(this.offsetX)-.5)
