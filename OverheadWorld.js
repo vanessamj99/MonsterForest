@@ -39,7 +39,7 @@ function OverheadWorld(params) {
 
   // displayWorld: displays the current world
   this.displayWorld = function() {
-    console.log(this.tileMap)
+    //console.log(this.tileMap)
     for (var row = 0; row < this.tileMap.length; row += 1) {
       for (var col = 0; col < this.tileMap[row].length; col += 1) {
         var tileInteger = this.tileMap[row][col]

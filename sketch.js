@@ -1,4 +1,5 @@
 var theWorld;
+var mainWiz;
 
 // our user controlled character object - see Player.js for more information
 var thePlayer;
@@ -11,7 +12,7 @@ var worldParameters = {
   tileSize: 50,
   tileFolder: 'tiles',
   numTiles: 12,
-  solidTiles: {0:true, 18:true, 6:true}
+  solidTiles: {2:true, 11:true}
 };
 
 // room data - loaded in from an external file (see 'data/rooms.json')
@@ -26,6 +27,7 @@ function preload() {
   // create our world
   theWorld = new OverheadWorld(worldParameters);
   theMonster = new Monsters(100,100,theWorld)
+  mainWiz = new Wiz(100,100,theWorld)
 
   // create our player
   // thePlayer = new Player(100, 100, theWorld);
@@ -52,6 +54,9 @@ function draw() {
   theWorld.displayWorld()
   theMonster.display()
   theMonster.movement()
+
+  mainWiz.move()
+  mainWiz.display()
 
   //test comment
   // thePlayer.move();

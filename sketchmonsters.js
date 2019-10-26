@@ -102,7 +102,6 @@ class Monsters{
     if(this.arms >= this.armlength){
       this.arms = this.armlength
     }
-    // this.growfangs()
   }
     growfangs(){
       fill(this.colorfangs)
