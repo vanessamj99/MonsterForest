@@ -1,15 +1,21 @@
 var monster1
+var monsterArray
 function setup(){
-  createCanvas(500,500)
+  createCanvas(800,800)
   monster1 = new Monsters(300,300)
   noiseDetail(24)
+  monsterArray = []
 }
 
 function draw(){
   background(230)
-  monster1.display()
-  monster1.movement()
-
+  // for(let j = 0; j < 12; j++){
+  //   monsterArray[j].push(new Monsters(300,300))
+  // }
+  for(let i = 0; i < monsterArray.length; i++){
+    monsterArray[i].display()
+    monsterArray[i].movement()
+}
 
 }
 
@@ -116,17 +122,17 @@ class Monsters{
     movement(){
       this.x += this.dx
       this.y += this.dy
-      if(this.x > width - 60){
-        this.x = width - 60
+      if(this.x > width - 90){
+        this.x = width - 90
       }
-      if(this.x < 60){
-        this.x = 60
+      if(this.x < 90){
+        this.x = 90
       }
-      if(this.y > height - 80){
-        this.y = height - 80
+      if(this.y > height - 100){
+        this.y = height - 100
       }
-      if(this.y < 60){
-        this.y = 60
+      if(this.y < 90){
+        this.y = 90
       }
       //speed
       this.dx = 5 * (noise(this.offsetX)-.5)
@@ -135,7 +141,6 @@ class Monsters{
       this.offsetX += .01
       this.offsetY += .01
     }
-
 
 
 

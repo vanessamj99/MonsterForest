@@ -83,7 +83,20 @@ function Wiz(x, y, world) {
 
           this.x -= this.speed;
         }
+        if (!world.isTileGrass(tile)){
+          this.x -= (this.speed *1.8);
+        }
+        if (!world.isTileWet(tile)){
+          this.x -= (this.speed *0.5);
+        }
+
       }
+      // if (!world.isTileGrass(tile)){
+      //   this.x += (this.speed *1.2);
+      // }
+      // else{
+      //   this.x += this.speed;
+      // }
 
       // change artwork
       this.currentImage = this.artworkLeft;
@@ -112,7 +125,19 @@ function Wiz(x, y, world) {
           // move
           this.x += this.speed;
         }
+        if (!world.isTileGrass(tile)){
+          this.x += (this.speed *1.8);
+        }
+        if (!world.isTileWet(tile)){
+          this.x += (this.speed *0.5);
+        }
       }
+      // if (!world.isTileGrass(tile)){
+      //   this.x += (this.speed *1.2);
+      // }
+      // else{
+      //   this.x += this.speed;
+      // }
 
       // change artwork
       this.currentImage = this.artworkRight;
@@ -139,8 +164,20 @@ function Wiz(x, y, world) {
           // move
           this.y += this.speed;
         }
+        if (!world.isTileGrass(tile)){
+          this.y += (this.speed *1.8);
+        }
+        if (!world.isTileWet(tile)){
+          this.y += (this.speed *0.5);
+        }
 
       }
+      // if (!world.isTileGrass(tile)){
+      //   this.x += (this.speed *1.2);
+      // }
+      // else{
+      //   this.x += this.speed;
+      // }
 
       // change artwork
       this.currentImage = this.artworkDown;
@@ -168,7 +205,15 @@ function Wiz(x, y, world) {
           // move
           this.y -= this.speed;
         }
+        if (!world.isTileGrass(tile)){
+          this.y -= (this.speed *1.8);
+        }
+        if (!world.isTileWet(tile)){
+          this.y -= (this.speed *0.5);
+        }
+
       }
+
 
       // change artwork
       this.currentImage = this.artworkUp;

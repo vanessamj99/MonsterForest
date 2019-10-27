@@ -11,6 +11,9 @@ function OverheadWorld(params) {
   // store an object that defines which tiles are solid
   this.solidTiles = params.solidTiles;
 
+  this.grassTiles = params.grassTiles;
+
+  this.wetTiles = params.wetTiles;
   // an array to hold all tile graphics
   this.tileLibrary = [];
 
@@ -99,4 +102,23 @@ function OverheadWorld(params) {
     // otherwise return false
     return false;
   }
+
+  this.isTileGrass = function(id) {
+    if (id in this.grassTiles || id == -1) {
+      return true;
+    }
+
+    // otherwise return false
+    return false;
+  }
+
+  this.isTileWet = function(id) {
+    if (id in this.wetTiles || id == -1) {
+      return true;
+    }
+
+    // otherwise return false
+    return false;
+  }
+
 }
