@@ -9,6 +9,7 @@ function setup(){
 
 function draw(){
   background(230)
+
   // for(let j = 0; j < 12; j++){
   //   monsterArray[j].push(new Monsters(300,300))
   // }

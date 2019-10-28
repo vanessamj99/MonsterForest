@@ -54,6 +54,18 @@ function OverheadWorld(params) {
     }
   }
 
+  this.swapHearts = function(x, y) {
+    // convert the x & y position into a grid position
+    var col = Math.floor(x/this.tileSize);
+    var row = Math.floor(y/this.tileSize);
+
+    if(this.tileMap[row][col] == 7){
+      this.tileMap[row][col] = 6
+    }
+}
+
+
+
   // get a tile based on a screen x,y position
   this.getTile = function(x, y) {
     // convert the x & y position into a grid position

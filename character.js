@@ -7,6 +7,9 @@ function Wiz(x, y, world) {
   // tiles that are in our path
   this.world = world;
 
+  //health Bar
+  // this.hunger = 100;
+
   // load & store our artwort
   this.artworkLeft = loadImage('images/char_left.png');
   this.artworkRight = loadImage('images/char_right.png');
@@ -59,6 +62,30 @@ function Wiz(x, y, world) {
     // WASD
     // wasd
     // The four directional arrows
+
+    var cx = this.x + this.currentImage.width/2;
+    var cy = this.y + this.currentImage.height/2;
+    var underTile = world.getTile(cx,cy)
+
+    if (world.isTileGrass(underTile)){
+      this.speed = 1
+    }
+    else if(world.isTileWet(underTile)){
+      this.speed = 2
+    }
+    else{
+      this.speed = 3
+    }
+    //the undertile is the red heart
+    world.swapHearts(cx,cy)
+
+
+
+
+
+
+
+
     if (keyIsDown(LEFT_ARROW) || keyIsDown(97) || keyIsDown(65)) {
 
       // see which tile is to our left
@@ -83,20 +110,10 @@ function Wiz(x, y, world) {
 
           this.x -= this.speed;
         }
-        if (!world.isTileGrass(tile)){
-          this.x -= (this.speed *1.8);
-        }
-        if (!world.isTileWet(tile)){
-          this.x -= (this.speed *0.5);
-        }
+
 
       }
-      // if (!world.isTileGrass(tile)){
-      //   this.x += (this.speed *1.2);
-      // }
-      // else{
-      //   this.x += this.speed;
-      // }
+
 
       // change artwork
       this.currentImage = this.artworkLeft;
@@ -125,19 +142,9 @@ function Wiz(x, y, world) {
           // move
           this.x += this.speed;
         }
-        if (!world.isTileGrass(tile)){
-          this.x += (this.speed *1.8);
-        }
-        if (!world.isTileWet(tile)){
-          this.x += (this.speed *0.5);
-        }
+
       }
-      // if (!world.isTileGrass(tile)){
-      //   this.x += (this.speed *1.2);
-      // }
-      // else{
-      //   this.x += this.speed;
-      // }
+
 
       // change artwork
       this.currentImage = this.artworkRight;
@@ -164,20 +171,9 @@ function Wiz(x, y, world) {
           // move
           this.y += this.speed;
         }
-        if (!world.isTileGrass(tile)){
-          this.y += (this.speed *1.8);
-        }
-        if (!world.isTileWet(tile)){
-          this.y += (this.speed *0.5);
-        }
 
       }
-      // if (!world.isTileGrass(tile)){
-      //   this.x += (this.speed *1.2);
-      // }
-      // else{
-      //   this.x += this.speed;
-      // }
+
 
       // change artwork
       this.currentImage = this.artworkDown;
@@ -205,12 +201,6 @@ function Wiz(x, y, world) {
           // move
           this.y -= this.speed;
         }
-        if (!world.isTileGrass(tile)){
-          this.y -= (this.speed *1.8);
-        }
-        if (!world.isTileWet(tile)){
-          this.y -= (this.speed *0.5);
-        }
 
       }
 
@@ -219,6 +209,8 @@ function Wiz(x, y, world) {
       this.currentImage = this.artworkUp;
       this.displaySensor("up");
     }
+
+    // rect(this.x,this.y+60,40,15)
 
   }
 
