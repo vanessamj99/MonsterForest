@@ -305,7 +305,7 @@ class Monsters{
     checkplayerCollision(){
       xBar = mainWiz.x
       yBar = mainWiz.y + 60
-      if(dist(this.x,this.y,mainWiz.x,mainWiz.y) <30){
+      if(dist(this.x,this.y,mainWiz.x,mainWiz.y) <45){
         barWidth = constrain(barWidth,0,100)
         barWidth -= .1
         if (barWidth <= 0){
