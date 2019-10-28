@@ -40,6 +40,22 @@ function OverheadWorld(params) {
 
     // extract the level definition for our starting room
     this.tileMap = this.roomData[this.roomCurrent].level;
+    if(coinCollected1 == false && this.roomCurrent == "start"){
+      var first = floor(random(2,9))
+      var last = floor(random(2,9))
+      // this.tileMap[first][last] = 12
+      while(this.tileMap[first][last] == 2){
+         first = floor(random(2,9))
+         last = floor(random(2,9))
+      }
+      this.tileMap[first][last] = 12
+    }
+    // if(coinCollected2 == false && this.roomCurrent == "room1"){
+    //   this.tileMap[floor(random(2,9))][floor(random(1,9))] = 12
+    // }
+    // if(coinCollected3 == false && this.roomCurrent == "room2"){
+    //   this.tileMap[floor(random(2,9))][floor(random(1,9))] = 12
+    // }
   }
 
   // displayWorld: displays the current world
@@ -64,6 +80,19 @@ function OverheadWorld(params) {
     if(this.tileMap[row][col] == 7){
       this.tileMap[row][col] = 6
       barWidth = 50
+    }
+    else if(this.tileMap[row][col] == 12){
+      this.tileMap[row][col] = 6
+      coin ++;
+      if(this.roomCurrent == "start"){
+        coinCollected1 = true;
+      }
+      else if(this.roomCurrent == "room1"){
+        coinCollected2 = true;
+      }
+      else if(this.roomCurrent == "room2"){
+        coinCollected3 = true;
+      }
     }
 }
 
@@ -106,6 +135,32 @@ function OverheadWorld(params) {
 
     // extract the level definition for our starting room
     this.tileMap = this.roomData[this.roomCurrent].level;
+    if(coinCollected2 == false && this.roomCurrent == "room1"){
+      var first = floor(random(2,9))
+      var last = floor(random(2,9))
+      // this.tileMap[first][last] = 12
+      while(this.tileMap[first][last] == 2){
+         first = floor(random(2,9))
+         last = floor(random(2,9))
+      }
+      this.tileMap[first][last] = 12
+
+      // this.tileMap[floor(random(2,9))][floor(random(1,9))] = 12
+      coinCollected2 = true
+    }
+    if(coinCollected3 == false && this.roomCurrent == "room2"){
+      var first = floor(random(2,9))
+      var last = floor(random(2,9))
+      // this.tileMap[first][last] = 12
+      while(this.tileMap[first][last] == 2){
+         first = floor(random(2,9))
+         last = floor(random(2,9))
+      }
+      this.tileMap[first][last] = 12
+
+      // this.tileMap[floor(random(2,9))][floor(random(1,9))] = 12
+      coinCollected3 = true
+    }
   }
 
   // see if this tile is solid

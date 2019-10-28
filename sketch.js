@@ -8,7 +8,9 @@ var pause = true;
 var flag = false;
 var end = false;
 var theMonster;
-
+var coinCollected1 = false;
+var coinCollected2 = false;
+var coinCollected3 = false;
 var xBar = 0
 var yBar = 0
 
@@ -17,13 +19,14 @@ var monster1
 var monsterArray
 var zombies
 var microphone
+var coin = 0
 // var volume
 // create an object to hold our "world parameters" - we will send this object into our
 // OverheadWorld to tell it how our world is organized
 var worldParameters = {
   tileSize: 80,
   tileFolder: 'tiles',
-  numTiles: 12,
+  numTiles: 13,
   solidTiles: {2:true, 11:true},
   grassTiles: {4:true},
   wetTiles: {10:true},
@@ -72,6 +75,7 @@ function setup() {
 
   // start the microphone (will request access to the mic from the user)
   microphone.start();
+  // this.tileMap[random(2,9)][random(1,9)] = 12
 }
 
 function allDone(worldData) {
@@ -96,7 +100,7 @@ else if(end == true){
   image(zombies,0,0,800,800)
   text("Game Over! The Monsters win!",300,30);
 }
-else if(winner == true){
+else if(winner == true && coin == 3){
   background(255)
   test("YOU WIN! CONGRATZ!", 300,30)
 }
