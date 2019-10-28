@@ -1,6 +1,7 @@
 var theWorld;
 var mainWiz;
 var forestpic;
+var winner = false;
 // our user controlled character object - see Player.js for more information
 var thePlayer;
 var pause = true;
@@ -15,6 +16,8 @@ var barWidth = 50
 var monster1
 var monsterArray
 var zombies
+var microphone
+// var volume
 // create an object to hold our "world parameters" - we will send this object into our
 // OverheadWorld to tell it how our world is organized
 var worldParameters = {
@@ -22,8 +25,10 @@ var worldParameters = {
   tileFolder: 'tiles',
   numTiles: 12,
   solidTiles: {2:true, 11:true},
-  grassTiles: {6:true},
-  wetTiles: {10:true}
+  grassTiles: {4:true},
+  wetTiles: {10:true},
+  winnerTiles: {0:true}
+
 };
 
 // room data - loaded in from an external file (see 'data/rooms.json')
@@ -50,6 +55,7 @@ function preload() {
 
 function setup() {
   var c = createCanvas(800,800);
+  userStartAudio()
   c.parent("game_container")
   // now that everything is fully loaded send over the room data to our world object
   // also let the world know which room we should start with
@@ -62,6 +68,10 @@ function setup() {
     monsterArray.push(new Monsters(300,300))
 
   }
+  microphone = new p5.AudioIn();
+
+  // start the microphone (will request access to the mic from the user)
+  microphone.start();
 }
 
 function allDone(worldData) {
@@ -86,35 +96,37 @@ else if(end == true){
   image(zombies,0,0,800,800)
   text("Game Over! The Monsters win!",300,30);
 }
+else if(winner == true){
+  background(255)
+  test("YOU WIN! CONGRATZ!", 300,30)
+}
 else{
   background(0)
   theWorld.displayWorld()
   theMonster.display()
-  theMonster.movement()
+  theMonster.movement(microphone.getLevel())
+
 
   mainWiz.move()
   mainWiz.display()
   for(let i = 0; i < monsterArray.length; i++){
     monsterArray[i].display()
-    monsterArray[i].movement()
+    monsterArray[i].movement(microphone.getLevel())
     monsterArray[i].checkplayerCollision()
-}
-// if(end == true){
-//   console.log("should be over")
-//   background(0)
-//   text("Game Over! Sorry!",260,100);
-// }
+  }
+  // volume = microphone.getLevel();
+
 
 // noFill()
 
 
   if(barWidth < 10){
-    console.log("red")
+    // console.log("red")
     fill(255,0,0)
     console.log(barWidth)
   }
   else if(barWidth < 25){
-    console.log("yellow")
+    // console.log("yellow")
     fill(255,200,0)
 
   }
@@ -123,7 +135,7 @@ else{
   //   end = true
   // }
   else{
-    console.log("green")
+    // console.log("green")
     fill(0,255,0)
   }
   rect(xBar,yBar,barWidth,10)
@@ -246,9 +258,31 @@ class Monsters{
       line(this.x, this.y-2, this.x -4, this.y-4)
       line(this.x, this.y-2, this.x +5, this.y-4)
     }
-    movement(){
+    movement(volume){
       this.x += this.dx
       this.y += this.dy
+
+      // console.log(volume)
+      // volume = microphone.getLevel();
+      // console.log(volume)
+      console.log(volume>.0000001)
+      console.log("VOLUME: "+volume)
+
+      if (dist(mainWiz.x,mainWiz.y, this.x, this.y) < 100 && volume > 0.01) {
+        // run away!
+        if (mainWiz.x > this.x) {
+          this.x -= 3;
+        }
+        else {
+          this.x += 3;
+        }
+        if (mainWiz.y > this.y) {
+          this.y -= 3;
+        }
+        else {
+          this.y += 3;
+        }
+      }
       if(this.x > width - 90){
         this.x = width - 90
       }
@@ -271,7 +305,7 @@ class Monsters{
     checkplayerCollision(){
       xBar = mainWiz.x
       yBar = mainWiz.y + 60
-      if(dist(this.x,this.y,mainWiz.x,mainWiz.y) <50){
+      if(dist(this.x,this.y,mainWiz.x,mainWiz.y) <30){
         barWidth = constrain(barWidth,0,100)
         barWidth -= .1
         if (barWidth <= 0){

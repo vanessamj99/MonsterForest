@@ -73,6 +73,9 @@ function Wiz(x, y, world) {
     else if(world.isTileWet(underTile)){
       this.speed = 2
     }
+    else if(world.isTileWinner(underTile)){
+      winner = true;
+    }
     else{
       this.speed = 3
     }

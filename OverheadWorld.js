@@ -14,6 +14,8 @@ function OverheadWorld(params) {
   this.grassTiles = params.grassTiles;
 
   this.wetTiles = params.wetTiles;
+
+  this.winnerTiles = params.winnerTiles;
   // an array to hold all tile graphics
   this.tileLibrary = [];
 
@@ -61,6 +63,7 @@ function OverheadWorld(params) {
 
     if(this.tileMap[row][col] == 7){
       this.tileMap[row][col] = 6
+      barWidth = 50
     }
 }
 
@@ -126,6 +129,16 @@ function OverheadWorld(params) {
 
   this.isTileWet = function(id) {
     if (id in this.wetTiles || id == -1) {
+      return true;
+    }
+
+    // otherwise return false
+    return false;
+  }
+
+
+  this.isTileWinner = function(id) {
+    if (id in this.winnerTiles || id == -1) {
       return true;
     }
 
