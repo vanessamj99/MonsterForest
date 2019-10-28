@@ -14,6 +14,7 @@ var yBar = 0
 var barWidth = 50
 var monster1
 var monsterArray
+var zombies
 // create an object to hold our "world parameters" - we will send this object into our
 // OverheadWorld to tell it how our world is organized
 var worldParameters = {
@@ -42,7 +43,7 @@ function preload() {
   collectNoise = loadSound("sounds/collect.mp3")
   mazeSong = loadSound("sounds/wizardmaze.mp3")
   forestpic = loadImage('images/forestpic.jpeg')
-
+  zombies = loadImage('images/zombie.jpeg')
   // create our player
   // thePlayer = new Player(100, 100, theWorld);
 }
@@ -79,6 +80,12 @@ if(pause == true){
   text("Welcome to Monster Forest! Press the Space Bar to Start",260,100);
 
 }
+else if(end == true){
+  console.log("should be over")
+  background(0)
+  image(zombies,0,0,800,800)
+  text("Game Over! The Monsters win!",300,30);
+}
 else{
   background(0)
   theWorld.displayWorld()
@@ -92,9 +99,11 @@ else{
     monsterArray[i].movement()
     monsterArray[i].checkplayerCollision()
 }
-if(end == true){
-  background(0)
-}
+// if(end == true){
+//   console.log("should be over")
+//   background(0)
+//   text("Game Over! Sorry!",260,100);
+// }
 
 // noFill()
 
@@ -109,10 +118,10 @@ if(end == true){
     fill(255,200,0)
 
   }
-  else if (barWidth == 0){
-    console.log("should be the end")
-    end = true
-  }
+  // else if (barWidth <= 0){
+  //   console.log("should be the end")
+  //   end = true
+  // }
   else{
     console.log("green")
     fill(0,255,0)
@@ -120,10 +129,7 @@ if(end == true){
   rect(xBar,yBar,barWidth,10)
 
 }
-  //test comment
-  // thePlayer.move();
-  // thePlayer.display();
-  // rect(xBar,yBar,barWidth,10)
+
 
 
 }
@@ -268,6 +274,10 @@ class Monsters{
       if(dist(this.x,this.y,mainWiz.x,mainWiz.y) <50){
         barWidth = constrain(barWidth,0,100)
         barWidth -= .1
+        if (barWidth <= 0){
+          end = true
+        }
+
 
       }
 
