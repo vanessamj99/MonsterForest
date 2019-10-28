@@ -268,7 +268,7 @@ class Monsters{
       console.log(volume>.0000001)
       console.log("VOLUME: "+volume)
 
-      if (dist(mainWiz.x,mainWiz.y, this.x, this.y) < 100 && volume > 0.01) {
+      if (dist(mainWiz.x,mainWiz.y, this.x, this.y) < 100 && volume > 0.1) {
         // run away!
         if (mainWiz.x > this.x) {
           this.x -= 3;
