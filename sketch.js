@@ -44,7 +44,7 @@ function preload() {
   // create our world
   theWorld = new OverheadWorld(worldParameters);
   theMonster = new Monsters(100,100,theWorld)
-  mainWiz = new Wiz(550,700,theWorld)
+  mainWiz = new Wiz(550,640,theWorld)
   collectNoise = loadSound("sounds/collect.mp3")
   mazeSong = loadSound("sounds/wizardmaze.mp3")
   forestpic = loadImage('images/forestpic.jpeg')
