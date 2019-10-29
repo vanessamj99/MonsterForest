@@ -13,6 +13,7 @@ var coinCollected2 = false;
 var coinCollected3 = false;
 var xBar = 0
 var yBar = 0
+var youwin
 
 var barWidth = 50
 var monster1
@@ -50,8 +51,9 @@ function preload() {
   mainWiz = new Wiz(550,640,theWorld)
   collectNoise = loadSound("sounds/collect.mp3")
   mazeSong = loadSound("sounds/wizardmaze.mp3")
-  forestpic = loadImage('images/forestpic.jpeg')
-  zombies = loadImage('images/zombie.jpeg')
+  forestpic = loadImage('images/forest.jpeg')
+  zombies = loadImage('images/end.jpeg')
+  youwin = loadImage('images/youwin.jpeg')
   // create our player
   // thePlayer = new Player(100, 100, theWorld);
 }
@@ -67,7 +69,7 @@ function setup() {
   monster1 = new Monsters(300,300)
   noiseDetail(24)
   monsterArray = []
-  for(let j = 0; j < 12; j++){
+  for(let j = 0; j < 20; j++){
     monsterArray.push(new Monsters(300,300))
 
   }
@@ -90,19 +92,16 @@ function draw() {
 if(pause == true){
   background(56,65,36);
   image(forestpic,0,0,800,800)
-  fill(255)
-  text("Welcome to Monster Forest! Press the Space Bar to Start",260,100);
 
 }
 else if(end == true){
   console.log("should be over")
   background(0)
   image(zombies,0,0,800,800)
-  text("Game Over! The Monsters win!",300,30);
 }
-else if(winner == true && coin == 3){
-  background(255)
-  test("YOU WIN! CONGRATZ!", 300,30)
+else if(coin == 3 && winner == true){
+  image(youwin,0,0,800,800)
+
 }
 else{
   background(0)

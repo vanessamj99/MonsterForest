@@ -68,10 +68,10 @@ function Wiz(x, y, world) {
     var underTile = world.getTile(cx,cy)
 
     if (world.isTileGrass(underTile)){
-      this.speed = 1
+      this.speed =6
     }
     else if(world.isTileWet(underTile)){
-      this.speed = 2
+      this.speed = 4
     }
     else if(world.isTileWinner(underTile)){
       winner = true;
